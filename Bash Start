@@ -1,0 +1,21 @@
+Create a bash file, myDB.bck and save it as a backup to myDB_[data_hora].bck 
+Find a script to add the date to the name.
+
+
+
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 <filename>"
+    exit 1
+fi
+
+if [ -z "$2" ]; then
+    echo "Need an output file name"
+    exit 1
+else
+
+    cp "$1" "$2"
+
+fi
+
+echo "Backup of $1 created as $2"
