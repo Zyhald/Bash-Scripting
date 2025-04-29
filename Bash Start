@@ -1,4 +1,9 @@
-Create a bash file, myDB.bck and save it as a backup to myDB_[data_hora].bck 
+Create a bash file, myDB.bck and save it as a backup to myDB_[data_hora].bck    EX: 2904_1022
+                                                                                    29 = day
+                                                                                    04 = month
+                                                                                    10 = hour
+                                                                                    22 = minute
+
 Find a script to add the date to the name.
 
 
