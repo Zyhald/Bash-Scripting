@@ -24,3 +24,24 @@ else
 fi
 
 echo "Backup of $1 created as $2"
+
+
+
+
+Needs to be tested, but should be right.
+
+#!/bin/bash
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 <filename>"
+    exit 1
+fi
+
+# Generate timestamped output filename
+TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
+BASENAME=$(basename "$1" .bck)
+OUTPUT_FILE="${BASENAME}_${TIMESTAMP}.bck"
+
+cp "$1" "$OUTPUT_FILE"
+
+echo "Backup of $1 created as $OUTPUT_FILE"
