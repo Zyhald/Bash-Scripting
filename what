@@ -1,0 +1,36 @@
+
+#!/bin/bash
+
+read -s -p "Digite o código secreto (4 dígitos): " secret_code
+
+if [[ ! $secret_code =~ ^[0-9]{4}$ ]]; then
+  echo "Código inválido! Precisa ser 4 dígitos."
+  exit 1
+fi
+
+clear 
+
+while true; do
+  read -p "Tente adivinhar o código (4 dígitos): " guess
+
+  if [[ ! $guess =~ ^[0-9]{4}$ ]]; then
+    echo "Palpite inválido! Digite 4 dígitos."
+    continue
+  fi
+
+  correct_pos=0
+  for (( i=0; i<4; i++ )); do
+    if [[ "${guess:$i:1}" == "${secret_code:$i:1}" ]]; then
+      ((correct_pos++))
+    fi
+  done
+
+  echo "Quantidade de dígitos corretos na posição certa: $correct_pos"
+
+  if [[ "$guess" == "$secret_code" ]]; then
+    echo "Parabéns! Você acertou o código."
+    break
+  fi
+
+
+done
