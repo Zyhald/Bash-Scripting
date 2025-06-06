@@ -1,0 +1,29 @@
+
+
+# introduzir o nome do aluno
+# introduz o nome para adivinhar secretamente
+# loop ate descobrir o nome real
+
+clear
+
+read -s -p "Introduz um nome de aluno" NOME_ALUNO
+
+echo
+
+clear
+
+while true; do
+
+    read -s -p "Qual é o nome do aluno?" RESPOSTA
+
+    echo
+        if [ $NOME_ALUNO != $RESPOSTA ]; then
+            echo "Não acertaste, tenta denovo"
+            clear
+        else
+            echo "Boa, o nome era $NOME_ALUNO"
+            break
+        fi
+done
+
+
