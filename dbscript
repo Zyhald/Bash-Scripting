@@ -1,0 +1,34 @@
+# 4 parametros
+
+# 1º user root
+# 2º pass root
+# 3º user novo
+# 4º pass novo utilizador
+
+# executado no host
+
+docker exec -it mysql_container /bin/bash
+
+if [ "$#" -ne 4 ]; then
+    echo "Uso: $0 <nomeuser> <passuser> <nomeusernovo> <passusernovo>" 
+    exit 1
+fi
+
+nomeuser=$1
+passuser=$2
+nomeusernovo=$3
+passusernovo=$4
+
+
+sqlFile="createuser.sql"
+docker exec -i mysql_container mysql -u$nomeuser -p$passuser "CREATE USER '$nomeusernovo'@localhost' IDENTIFIED BY '$passusernovo';" > $sqlFile
+
+docker exec -i mysql_container mysql -u$nomeuser -p$passuser "GRANT ALL PRIVILEGES ON *.* TO '$nomeusernovo'@'localhost';" >> $sqlFile
+
+docker exec -i mysql_container mysql -u$nomeuser -p$passuser "FLUSH PRIVILEGES;" >> $sqlFile
+
+
+
+docker cp $sqlFile mysql_container:/tmp/$sqlFile
+
+docker exec -i mysql_container /bin/bash -c "mysql -u$nomeuser -p$passuser < /tmp/$sqlFile"
