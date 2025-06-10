@@ -17,5 +17,5 @@ else
   echo "Erro ao salvar a base de dados, verifica:"
   echo "1. Se a password está correta"
   echo "2. Se a base '$BASE_DADOS' existe"
-  exit 3
+  exit 2
 fi
