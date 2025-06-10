@@ -14,7 +14,7 @@ mysqldump -u root -p "$BASE_DADOS" > "$FICHEIRO_DESTINO"
 if [ $? -eq 0 ]; then
   echo "Backup de '$BASE_DADOS' feito em '$FICHEIRO_DESTINO'"
 else
-  echo "Erro ao salver a base de dados, verifica:"
+  echo "Erro ao salvar a base de dados, verifica:"
   echo "1. Se a password está correta"
   echo "2. Se a base '$BASE_DADOS' existe"
   exit 3
