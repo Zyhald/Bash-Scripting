@@ -10,7 +10,7 @@ FICHEIRO_DESTINO="$2"
 CONTAINER="$3"
 
 
-docker exec -i "$CONTAINER" mysqldump -uroot -proot "$BASE_DADOS" > "$FICHEIRO_DESTINO"
+docker exec -i "$CONTAINER" mysqldump "$BASE_DADOS" -uroot -proot > "$FICHEIRO_DESTINO"
 
 if [ $? -eq 0 ]; then
   echo "Backup de '$BASE_DADOS' feito em '$FICHEIRO_DESTINO'"
