@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ "$#" -ne 2 ]; then
+if [ "$#" -ne 3 ]; then
   echo "Uso: $0 <nome_da_base_de_dados> <ficheiro_de_destino.sql> <nome_container>"
   exit 1
 fi
