@@ -1,15 +1,16 @@
 #!/bin/bash
 
 if [ "$#" -ne 2 ]; then
-  echo "Uso: $0 <nome_da_base_de_dados> <ficheiro_de_destino.sql>"
+  echo "Uso: $0 <nome_da_base_de_dados> <ficheiro_de_destino.sql> <nome_container>"
   exit 1
 fi
 
 BASE_DADOS="$1"
 FICHEIRO_DESTINO="$2"
+CONTAINER="$3"
 
 
-mysqldump -u root -p "$BASE_DADOS" > "$FICHEIRO_DESTINO"
+docker exec -i "$CONTAINER" mysqldump -uroot -proot "$BASE_DADOS" > "$FICHEIRO_DESTINO"
 
 if [ $? -eq 0 ]; then
   echo "Backup de '$BASE_DADOS' feito em '$FICHEIRO_DESTINO'"
