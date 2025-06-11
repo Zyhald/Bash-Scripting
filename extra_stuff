@@ -1,0 +1,21 @@
+
+
+if [ "$#" -ne 3 ]; then
+  echo "Uso: $0 <nome_container> <nome_database> <nome_tabela>"
+  exit 1
+fi
+
+CONTAINER=$1
+DATABASE=$2
+TABELA=$3
+
+
+echo "CREATE DATABASE $DATABASE;" > criar_tabela.sql
+echo "USE $DATABASE;" >> criar_tabela.sql
+echo "CREATE TABLE $TABELA (
+    Nome varchar(255)
+    );" >> criar_tabela.sql
+
+
+
+docker exec -i $CONTAINER mysql -uroot -proot < criar_tabela.sql
